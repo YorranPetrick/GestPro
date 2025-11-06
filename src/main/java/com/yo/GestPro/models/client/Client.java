@@ -1,11 +1,10 @@
 package com.yo.GestPro.models.client;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import com.yo.GestPro.models.product.Product;
+import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -21,13 +20,16 @@ public class Client {
     @Column(nullable = false)
     private ClientAccount clientAccount;
 
+    @OneToMany(mappedBy = "client")
+    private List<Product> products;
+
     public Client(String loginClient, String passwordClient, ClientAccount clientAccount) {
         this.loginClient = loginClient;
         this.passwordClient = passwordClient;
         this.clientAccount = clientAccount;
     }
 
-    Client(){
+    public Client(){
 
     }
 }
