@@ -9,15 +9,16 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "product")
 public class Product {
-    @Column(nullable = false)
+    @Column(nullable = false, name = "id_product")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idProduct;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "name_product")
     private String nameProduct;
+    @Column(name = "description_product")
     private String descriptionProduct;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "price_product")
     private double priceProduct;
 
     @ManyToOne

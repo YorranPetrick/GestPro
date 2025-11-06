@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
-@Entity
+@Entity(name = "client")
 public class Client {
-    @Column(nullable = false)
+    @Column(nullable = false, name = "id_client")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idClient;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, name = "login_client")
     private String loginClient;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "password_client")
     private String passwordClient;
     @Column(nullable = false)
     private ClientAccount clientAccount;
