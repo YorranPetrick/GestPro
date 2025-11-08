@@ -12,6 +12,7 @@ import java.util.UUID;
 public class Client {
     @Column(nullable = false, name = "id_client")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private UUID idClient;
     @Column(nullable = false, unique = true, name = "login_client")
     private String loginClient;

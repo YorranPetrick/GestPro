@@ -11,6 +11,7 @@ import java.util.UUID;
 @Setter
 @Entity(name = "product")
 public class Product {
+    @Id
     @Column(nullable = false, name = "id_product")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idProduct;
