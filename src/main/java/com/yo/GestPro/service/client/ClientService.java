@@ -1,4 +1,4 @@
-package com.yo.GestPro.service;
+package com.yo.GestPro.service.client;
 
 import com.yo.GestPro.models.client.Client;
 import com.yo.GestPro.models.client.ClientCreateDto;

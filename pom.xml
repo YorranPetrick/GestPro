@@ -12,7 +12,7 @@
 	<artifactId>GestPro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>GestPro</name>
-	<description>Sistema de Gerenciamento de Produtos (API REST com Spring Boot)</description>
+	<description>Sistema de Gestão de Produtos (API REST com Spring Boot)</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -60,6 +60,12 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.5.0</version>
 		</dependency>
 
 		<dependency>

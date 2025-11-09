@@ -1,7 +1,7 @@
 package com.yo.GestPro.controller;
 
 import com.yo.GestPro.models.client.ClientCreateDto;
-import com.yo.GestPro.service.ClientService;
+import com.yo.GestPro.service.client.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,4 +23,5 @@ public class ClientController {
         clientService.createClient(clientCreateDto);
         return ResponseEntity.ok().build();
     }
+
 }
