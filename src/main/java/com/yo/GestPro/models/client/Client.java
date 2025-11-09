@@ -23,12 +23,12 @@ public class Client implements UserDetails {
     @Column(nullable = false, name = "password_client")
     private String passwordClient;
     @Column(nullable = false)
-    private ClientAccount clientAccount;
+    private String clientAccount;
 
     @OneToMany(mappedBy = "client")
     private List<Product> products;
 
-    public Client(String loginClient, String passwordClient, ClientAccount clientAccount) {
+    public Client(String loginClient, String passwordClient, String clientAccount) {
         this.loginClient = loginClient;
         this.passwordClient = passwordClient;
         this.clientAccount = clientAccount;
@@ -40,7 +40,7 @@ public class Client implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(this.clientAccount.getRole()));
+        return List.of(new SimpleGrantedAuthority(this.clientAccount));
     }
 
     @Override

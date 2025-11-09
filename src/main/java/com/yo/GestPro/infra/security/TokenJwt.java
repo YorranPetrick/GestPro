@@ -31,7 +31,6 @@ public class TokenJwt {
         }
     }
 
-
     public String getSubject(String tokenJwt){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);

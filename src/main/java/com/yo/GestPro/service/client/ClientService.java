@@ -19,7 +19,7 @@ public class ClientService {
             Client client = new Client(
                     clientCreateDto.loginClient(),
                     clientCreateDto.passwordClient(),
-                    clientCreateDto.clientAccount());
+                    clientCreateDto.clientAccount().toString());
 
             clientRepository.save(client);
 

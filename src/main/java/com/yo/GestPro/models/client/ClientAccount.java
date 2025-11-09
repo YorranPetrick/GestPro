@@ -4,8 +4,8 @@ public enum ClientAccount {
     ADMIN,
     USER;
 
-    public String getRole() {
-        return "ROLE_" + this.name();
+    @Override
+    public String toString() {
+        return this.name();
     }
-
 }
