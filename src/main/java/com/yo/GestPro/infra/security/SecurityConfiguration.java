@@ -1,6 +1,7 @@
 package com.yo.GestPro.infra.security;
 
 import com.yo.GestPro.infra.filter.RequestFilter;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,13 +17,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @Configuration
+@AllArgsConstructor
 public class SecurityConfiguration {
 
     private final RequestFilter requestFilter;
-
-    public SecurityConfiguration(RequestFilter requestFilter) {
-        this.requestFilter = requestFilter;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{

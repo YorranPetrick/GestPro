@@ -7,6 +7,7 @@ import com.yo.GestPro.models.client.ClientCreateDto;
 import com.yo.GestPro.models.client.ClientLoginDto;
 import com.yo.GestPro.models.token.TokenResponse;
 import com.yo.GestPro.repository.ClientRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,18 +15,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class ClientService {
 
     private final ClientRepository clientRepository;
     private final TokenJwt tokenJwt;
     private final AuthenticationManager authenticationManager;
 
-
-    public ClientService(ClientRepository clientRepository, TokenJwt tokenJwt, AuthenticationManager authenticationManager) {
-        this.clientRepository = clientRepository;
-        this.tokenJwt = tokenJwt;
-        this.authenticationManager = authenticationManager;
-    }
 
     public void createClient(ClientCreateDto clientCreateDto) {
         try{
