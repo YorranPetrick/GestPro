@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.yo.GestPro.models.client.Client;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -15,14 +16,14 @@ public class TokenJwt {
     // The secret key must be stored in an environment variable for production
     private final String secret = "123456";
 
-    public String generateTokenJwt(String client){
+    public String generateTokenJwt(Client client){
 
         try{
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
             return JWT.create()
                     .withIssuer("GestPro")
-                    .withSubject(client)
+                    .withSubject(client.getLoginClient())
                     .withExpiresAt(expirationDate())
                     .sign(algorithm);
 

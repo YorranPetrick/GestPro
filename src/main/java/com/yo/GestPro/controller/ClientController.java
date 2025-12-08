@@ -1,6 +1,8 @@
 package com.yo.GestPro.controller;
 
 import com.yo.GestPro.models.client.ClientCreateDto;
+import com.yo.GestPro.models.client.ClientLoginDto;
+import com.yo.GestPro.models.token.TokenResponse;
 import com.yo.GestPro.service.client.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,4 +26,10 @@ public class ClientController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/login")
+    private ResponseEntity<TokenResponse> loginClient(@RequestBody ClientLoginDto clientLoginDto) throws Exception {
+        TokenResponse isAuthenticated = clientService.authenticateClient(clientLoginDto);
+        return ResponseEntity.ok(isAuthenticated);
+
+    }
 }

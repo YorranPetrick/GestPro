@@ -22,8 +22,11 @@ public class Client implements UserDetails {
     private String loginClient;
     @Column(nullable = false, name = "password_client")
     private String passwordClient;
+
+
     @Column(nullable = false)
-    private String clientAccount;
+    @Enumerated(EnumType.STRING)
+    private ClientAccount clientAccount;
 
     @OneToMany(mappedBy = "client")
     private List<Product> products;
@@ -31,7 +34,7 @@ public class Client implements UserDetails {
     public Client(String loginClient, String passwordClient, String clientAccount) {
         this.loginClient = loginClient;
         this.passwordClient = passwordClient;
-        this.clientAccount = clientAccount;
+        this.clientAccount = ClientAccount.valueOf(clientAccount);
     }
 
     public Client(){
@@ -40,7 +43,7 @@ public class Client implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(this.clientAccount));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + this.clientAccount.toString()));
     }
 
     @Override
