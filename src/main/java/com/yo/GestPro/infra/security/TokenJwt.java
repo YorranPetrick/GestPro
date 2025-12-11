@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 @Service
-public class TokenJwt {
+public class   TokenJwt {
 
     // The secret key must be stored in an environment variable for production
     private final String secret = "123456";
@@ -48,7 +48,7 @@ public class TokenJwt {
 
     }
 
-    private Instant expirationDate() {
+    public Instant expirationDate() {
         return Instant.now().plus(Duration.ofHours(2));
     }
 }

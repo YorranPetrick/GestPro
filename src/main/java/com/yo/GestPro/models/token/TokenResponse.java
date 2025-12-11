@@ -1,4 +1,7 @@
 package com.yo.GestPro.models.token;
 
-public record TokenResponse(String tokenJwt) {
+import java.time.Instant;
+
+public record TokenResponse(String tokenJwt, Instant expirationDate) {
+
 }

@@ -9,7 +9,6 @@ import com.yo.GestPro.models.token.TokenResponse;
 import com.yo.GestPro.repository.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -43,8 +42,7 @@ public class ClientService {
         Authentication authentication = authenticationManager.authenticate(usernamePasswordToken);
 
         Client client = (Client) authentication.getPrincipal();
-        TokenResponse tokenResponse = new TokenResponse(tokenJwt.generateTokenJwt(client));
-        return tokenResponse;
+        return new TokenResponse(tokenJwt.generateTokenJwt(client), tokenJwt.expirationDate());
     }
 
     public void updateClient(ClientCreateDto clientCreateDto, String idClient) {
