@@ -14,6 +14,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class ClientService {
@@ -53,4 +55,30 @@ public class ClientService {
         return tokenResponse;
     }
 
+    public void updateClient(ClientCreateDto clientCreateDto, String idClient) {
+        try{
+            Client client = clientRepository.findById(UUID.fromString(idClient))
+                    .orElse(null);
+
+           if (client != null) {
+                client.setLoginClient(
+                        clientCreateDto.loginClient() != null ?
+                                clientCreateDto.loginClient() : client.getLoginClient());
+
+                client.setPasswordClient(
+                        clientCreateDto.passwordClient() != null ?
+                        SecurityConfiguration
+                                .passwordEncoder()
+                                .encode(clientCreateDto.passwordClient()) : client.getPasswordClient());
+
+                client.setClientAccount(
+                        clientCreateDto.clientAccount() != null ?
+                                clientCreateDto.clientAccount() : client.getClientAccount());
+
+                clientRepository.save(client);
+            }
+        }catch (Exception e){
+            throw new RuntimeException("Error updating client", e);
+        }
+    }
 }

@@ -6,10 +6,7 @@ import com.yo.GestPro.models.token.TokenResponse;
 import com.yo.GestPro.service.client.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clients")
@@ -29,6 +26,12 @@ public class ClientController {
         TokenResponse isAuthenticated = clientService.authenticateClient(clientLoginDto);
         return ResponseEntity.ok(isAuthenticated);
 
+    }
+
+    @PutMapping
+    private ResponseEntity updateClient(@RequestParam String idClient ,@RequestBody ClientCreateDto clientCreateDto) {
+        clientService.updateClient(clientCreateDto, idClient);
+        return ResponseEntity.ok().build();
     }
 
 

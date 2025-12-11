@@ -3,6 +3,7 @@ package com.yo.GestPro.models.client;
 import com.yo.GestPro.models.product.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+@Setter
 @Getter
 @Entity(name = "client")
 public class Client implements UserDetails {
