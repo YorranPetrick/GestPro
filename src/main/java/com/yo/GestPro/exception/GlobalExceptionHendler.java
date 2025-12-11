@@ -3,6 +3,7 @@ package com.yo.GestPro.exception;
 import com.yo.GestPro.models.error.ErrorField;
 import com.yo.GestPro.models.error.ErrorResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -40,5 +41,19 @@ public class GlobalExceptionHendler {
                 "An error occurred",
                 errorFields
         );
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorResponse handleBadCredentialsException(BadCredentialsException e){
+        List<ErrorField> errorFields = List.of(
+                new ErrorField(e.getMessage(),
+                        e.getCause().getMessage() != null ?
+                                e.getCause().getMessage() : "No additional details"));
+
+        return ErrorResponse.standardError(
+                HttpStatus.UNAUTHORIZED.value(),
+                "Invalid credentials",
+                errorFields);
     }
 }
