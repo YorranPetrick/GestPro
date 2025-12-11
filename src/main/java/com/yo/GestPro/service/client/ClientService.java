@@ -26,7 +26,6 @@ public class ClientService {
 
 
     public void createClient(ClientCreateDto clientCreateDto) {
-        try{
 
             Client client = new Client(
                     clientCreateDto.loginClient(),
@@ -35,9 +34,6 @@ public class ClientService {
 
             clientRepository.save(client);
 
-        }catch (Exception e){
-            throw new RuntimeException("Error creating client", e);
-        }
     }
 
     public TokenResponse authenticateClient(ClientLoginDto clientLoginDto) {
