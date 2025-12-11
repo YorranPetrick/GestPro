@@ -42,17 +42,13 @@ public class ClientService {
 
         Authentication authentication = authenticationManager.authenticate(usernamePasswordToken);
 
-        if (!authentication.isAuthenticated()) {
-            throw new BadCredentialsException("Credenciais inválidas");
-        }
-
         Client client = (Client) authentication.getPrincipal();
         TokenResponse tokenResponse = new TokenResponse(tokenJwt.generateTokenJwt(client));
         return tokenResponse;
     }
 
     public void updateClient(ClientCreateDto clientCreateDto, String idClient) {
-        try{
+
             Client client = clientRepository.findById(UUID.fromString(idClient))
                     .orElse(null);
 
@@ -72,9 +68,6 @@ public class ClientService {
                                 clientCreateDto.clientAccount() : client.getClientAccount());
 
                 clientRepository.save(client);
-            }
-        }catch (Exception e){
-            throw new RuntimeException("Error updating client", e);
-        }
+           }
     }
 }
