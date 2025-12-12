@@ -33,7 +33,7 @@ public class GlobalExceptionHendler {
     public ErrorResponse handleException(Exception e) {
         List<ErrorField> errorFields = List.of(
                 new ErrorField(e.getMessage(),
-                        e.getCause().getMessage() != null ?
+                        e.getCause() != null ?
                                 e.getCause().getMessage() :"No additional details"));
 
         return ErrorResponse.standardError(
@@ -48,7 +48,7 @@ public class GlobalExceptionHendler {
     public ErrorResponse handleBadCredentialsException(BadCredentialsException e){
         List<ErrorField> errorFields = List.of(
                 new ErrorField(e.getMessage(),
-                        e.getCause().getMessage() != null ?
+                        e.getCause() != null ?
                                 e.getCause().getMessage() : "No additional details"));
 
         return ErrorResponse.standardError(

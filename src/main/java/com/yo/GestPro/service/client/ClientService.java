@@ -68,4 +68,8 @@ public class ClientService {
                 clientRepository.save(client);
            }
     }
+
+    public void deleteClient(String idClient) {
+            clientRepository.deleteById(UUID.fromString(idClient));
+        }
 }

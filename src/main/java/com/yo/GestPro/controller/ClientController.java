@@ -16,7 +16,7 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping("/create")
-    private ResponseEntity createClient(@RequestBody ClientCreateDto clientCreateDto) {
+    private ResponseEntity<Void> createClient(@RequestBody ClientCreateDto clientCreateDto) {
         clientService.createClient(clientCreateDto);
         return ResponseEntity.ok().build();
     }
@@ -29,8 +29,14 @@ public class ClientController {
     }
 
     @PutMapping
-    private ResponseEntity updateClient(@RequestParam String idClient ,@RequestBody ClientCreateDto clientCreateDto) {
+    private ResponseEntity<Void> updateClient(@RequestParam String idClient ,@RequestBody ClientCreateDto clientCreateDto) {
         clientService.updateClient(clientCreateDto, idClient);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping
+    private ResponseEntity<Void> deleteClient(@RequestParam String idClient){
+        clientService.deleteClient(idClient);
         return ResponseEntity.ok().build();
     }
 
