@@ -1,5 +1,6 @@
 package com.yo.GestPro.infra.security;
 
+import com.yo.GestPro.exception.CustomAccessDeniedHandler;
 import com.yo.GestPro.infra.filter.RequestFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +21,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @AllArgsConstructor
 public class SecurityConfiguration {
 
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
     private final RequestFilter requestFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
         http.csrf(csrf -> csrf.disable())
+                .exceptionHandling(exception -> exception
+                        .accessDeniedHandler(customAccessDeniedHandler))
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
