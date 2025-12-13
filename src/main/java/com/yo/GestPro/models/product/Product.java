@@ -31,10 +31,13 @@ public class Product {
     @ManyToOne
     private Client client;
 
-    public Product(String nameProduct, String descriptionProduct, double priceProduct) {
+    public Product(String nameProduct, String descriptionProduct, double priceProduct, Integer minimumQuantity, Integer maximumQuantity, Client client) {
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
         this.priceProduct = priceProduct;
+        this.minimumQuantity = minimumQuantity;
+        this.maximumQuantity = maximumQuantity;
+        this.client = client;
     }
 
 }
