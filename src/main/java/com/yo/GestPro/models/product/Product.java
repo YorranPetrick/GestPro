@@ -3,6 +3,7 @@ package com.yo.GestPro.models.product;
 import com.yo.GestPro.models.client.Client;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.UUID;
@@ -10,6 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity(name = "product")
+@NoArgsConstructor
 public class Product {
     @Id
     @Column(nullable = false, name = "id_product")
@@ -35,7 +37,4 @@ public class Product {
         this.priceProduct = priceProduct;
     }
 
-    Product(){
-
-    }
 }
