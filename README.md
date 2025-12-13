@@ -20,6 +20,7 @@ src/
 │   │               │
 │   │               ├── exception/
 │   │               │   └── GlobalExceptionHendler.java
+│   │               │   └── CustomAccessDeniedHandler.java
 │   │               │
 │   │               ├── infra/
 │   │               │   ├── filter/

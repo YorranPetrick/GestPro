@@ -21,6 +21,10 @@ public class Product {
     private String descriptionProduct;
     @Column(nullable = false, name = "price_product")
     private double priceProduct;
+    @Column(nullable = false, name = "minimum_qantity")
+    private Integer minimumQuantity;
+    @Column(nullable = false, name = "maximum_quantity")
+    private Integer maximumQuantity;
 
     @ManyToOne
     private Client client;
