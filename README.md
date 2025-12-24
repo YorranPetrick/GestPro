@@ -17,6 +17,7 @@ src/
 │   │           └── GestPro/
 │   │               ├── controller/
 │   │               │   └── ClientController.java
+│   │               │   └── ProductController.java
 │   │               │
 │   │               ├── exception/
 │   │               │   └── GlobalExceptionHendler.java
@@ -41,6 +42,7 @@ src/
 │   │               │   │   └── ErrorResponse.java
 │   │               │   │
 │   │               │   ├── product/
+│   │               │   │   └── CreateProductDto.java
 │   │               │   │   └── Product.java
 │   │               │   │
 │   │               │   └── token/
@@ -51,10 +53,13 @@ src/
 │   │               │   └── ProductRepository.java
 │   │               │
 │   │               └── service/
-│   │                   └── client/
-│   │                       ├── ClientAuthenticationService.java
-│   │                       ├── ClientService.java
-│   │                       └── GestProApplication.java
+│   │                   ├── client/
+│   │                   │   ├── ClientAuthenticationService.java
+│   │                   │   ├── ClientService.java
+│   │                   │   └── GestProApplication.java
+│   │                   │
+│   │                   └── product/
+│   │                       ├── ProductService.java
 │   │
 │   └── resources/
 │       ├── application.properties
