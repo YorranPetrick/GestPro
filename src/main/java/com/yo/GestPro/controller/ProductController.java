@@ -1,12 +1,13 @@
 package com.yo.GestPro.controller;
 
+import com.yo.GestPro.infra.filter.RequestFilter;
+import com.yo.GestPro.infra.security.TokenJwt;
 import com.yo.GestPro.models.product.CreateProductDto;
 import com.yo.GestPro.service.product.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/products")
@@ -14,10 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
 
     private final ProductService productService;
+    private final TokenJwt jwt;
 
     @PostMapping
-    private ResponseEntity<Void> createProduct(CreateProductDto createProductDto){
-        productService.createProduct(createProductDto);
+    private ResponseEntity<Void> createProduct(HttpServletRequest httpRequest, @RequestBody CreateProductDto createProductDto){
+        String token = RequestFilter.recoverToken(httpRequest);
+        String subject = jwt.getSubject(token);
+
+        productService.createProduct(subject, createProductDto);
         return ResponseEntity.ok().build();
     }
 }

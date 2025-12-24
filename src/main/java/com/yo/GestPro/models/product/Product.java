@@ -29,6 +29,7 @@ public class Product {
     private Integer maximumQuantity;
 
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
 
     public Product(String nameProduct, String descriptionProduct, double priceProduct, Integer minimumQuantity, Integer maximumQuantity, Client client) {

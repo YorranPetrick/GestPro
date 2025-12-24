@@ -7,18 +7,17 @@ public record CreateProductDto(
         String descriptionProduct,
         double priceProduct,
         Integer minimumQuantity,
-        Integer maximumQuantity,
-        Client client
+        Integer maximumQuantity
 ) {
 
-    public Product toEntity(){
+    public Product toEntity(Client client){
         return new Product(
                 this.nameProduct,
                 this.descriptionProduct,
                 this.priceProduct,
                 this.minimumQuantity,
                 this.maximumQuantity,
-                this.client
+                client
         );
     }
 }
