@@ -23,6 +23,8 @@ public class Product {
     private String descriptionProduct;
     @Column(nullable = false, name = "price_product")
     private double priceProduct;
+    @Column(nullable = false, name = "atual_quantity")
+    private Integer atualQuantity;
     @Column(nullable = false, name = "minimum_qantity")
     private Integer minimumQuantity;
     @Column(nullable = false, name = "maximum_quantity")
@@ -32,10 +34,11 @@ public class Product {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    public Product(String nameProduct, String descriptionProduct, double priceProduct, Integer minimumQuantity, Integer maximumQuantity, Client client) {
+    public Product(String nameProduct, String descriptionProduct, double priceProduct, Integer atualQuantity, Integer minimumQuantity, Integer maximumQuantity, Client client) {
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
         this.priceProduct = priceProduct;
+        this.atualQuantity = atualQuantity;
         this.minimumQuantity = minimumQuantity;
         this.maximumQuantity = maximumQuantity;
         this.client = client;
