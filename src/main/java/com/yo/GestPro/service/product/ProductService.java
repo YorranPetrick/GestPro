@@ -3,11 +3,11 @@ package com.yo.GestPro.service.product;
 import com.yo.GestPro.models.client.Client;
 import com.yo.GestPro.models.error.ErrorField;
 import com.yo.GestPro.models.error.ErrorResponse;
-import com.yo.GestPro.models.product.ConsumeProductDto;
 import com.yo.GestPro.models.product.CreateProductDto;
 import com.yo.GestPro.models.product.Product;
 import com.yo.GestPro.repository.ClientRepository;
 import com.yo.GestPro.repository.ProductRepository;
+import com.yo.GestPro.utils.ProductQuantityValidation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,7 @@ public class ProductService {
 
     private ProductRepository productRepository;
     private ClientRepository clientRepository;
+    private ProductQuantityValidation productQuantityValidation;
 
     public void createProduct(String loginClient, CreateProductDto createProductDto) {
         Client client = clientRepository.findByLoginClient(loginClient).orElse(null);
@@ -41,6 +42,8 @@ public class ProductService {
 
                 product.setAtualQuantity(product.getAtualQuantity() - quantity);
                 productRepository.save(product);
+
+                productQuantityValidation.isValidQuantity(product); // The Class validate the product quantity and send message to RabbitMQ if necessary
 
                 return ResponseEntity.noContent().build();
 

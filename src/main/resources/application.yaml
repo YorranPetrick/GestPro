@@ -15,6 +15,13 @@ spring:
   flyway:
     enabled: true
 
+  # Management server configuration
+  # Change information in the production environment
+  rabbitmq:
+    host: localhost
+    port: 5672 #  porta AMQP
+    username: admin
+    password: admin
 
 logging:
   level:
