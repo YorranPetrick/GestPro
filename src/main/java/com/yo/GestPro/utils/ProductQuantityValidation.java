@@ -23,4 +23,15 @@ public class ProductQuantityValidation {
             rabbitProducer.sendMessage(message);
         }
     }
+
+    public void isValidQuantityUpdate(Product product){
+        if (product.getMaximumQuantity() < product.getAtualQuantity()){
+
+            String message = "Product ID: " + product.getIdProduct() +
+                             ", Name: " + product.getNameProduct() +
+                             " exceeded the maximum quantity. Current quantity: " + product.getAtualQuantity();
+
+            rabbitProducer.sendMessage(message);
+        }
+    }
 }
