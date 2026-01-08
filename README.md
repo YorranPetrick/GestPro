@@ -78,67 +78,7 @@ ALTER TABLE product ADD COLUMN actual_quantity INTEGER;
 
 * Gerenciamento global de exceções, para garantir que erros sejam tratados de forma adequada e mensagens claras sejam retornadas.
 
-## Arquitetura
+## Diagrama de Sequencia
 
-```Java
-src/
-├── main/
-│   ├── java/
-│   │   └── com/
-│   │       └── yo/
-│   │           └── GestPro/
-│   │               ├── controller/
-│   │               │   └── ClientController.java
-│   │               │   └── ProductController.java
-│   │               │
-│   │               ├── exception/
-│   │               │   └── GlobalExceptionHendler.java
-│   │               │   └── CustomAccessDeniedHandler.java
-│   │               │
-│   │               ├── infra/
-│   │               │   ├── filter/
-│   │               │   │   └── RequestFilter.java
-│   │               │   └── security/
-│   │               │       ├── SecurityConfiguration.java
-│   │               │       └── TokenJwt.java
-│   │               │
-│   │               ├── models/
-│   │               │   ├── client/
-│   │               │   │   ├── Client.java
-│   │               │   │   ├── ClientAccount.java
-│   │               │   │   ├── ClientCreateDto.java
-│   │               │   │   └── ClientLoginDto.java
-│   │               │   │
-│   │               │   ├── error/
-│   │               │   │   ├── ErrorField.java
-│   │               │   │   └── ErrorResponse.java
-│   │               │   │
-│   │               │   ├── product/
-│   │               │   │   └── CreateProductDto.java
-│   │               │   │   └── Product.java
-│   │               │   │
-│   │               │   └── token/
-│   │               │       └── TokenResponse.java
-│   │               │
-│   │               ├── repository/
-│   │               │   ├── ClientRepository.java
-│   │               │   └── ProductRepository.java
-│   │               │
-│   │               └── service/
-│   │                   ├── client/
-│   │                   │   ├── ClientAuthenticationService.java
-│   │                   │   ├── ClientService.java
-│   │                   │   └── GestProApplication.java
-│   │                   │
-│   │                   └── product/
-│   │                       ├── ProductService.java
-│   │
-│   └── resources/
-│       ├── application.properties
-│       └── db.migration/
-│           ├── V1__create_table_client.sql
-│           └── V2__Create_table_product.sql
-│
-└── test/
-└── ...
-```
+<img src="https://github.com/YorranPetrick/Imagens-Projetos/blob/master/GestPro/GestPro%20Diagrama%20de%20Sequencia.png">
+
