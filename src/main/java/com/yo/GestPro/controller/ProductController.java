@@ -39,4 +39,10 @@ public class ProductController {
                     .body("Error, please check with support.");
         }
     }
+
+    @PutMapping
+    private ResponseEntity<?> updateProduct(@RequestParam String uuid, @RequestBody CreateProductDto createProductDto){
+       return productService.updateProduct(uuid, createProductDto);
+
+    }
 }

@@ -5,6 +5,7 @@ import com.yo.GestPro.models.error.ErrorField;
 import com.yo.GestPro.models.error.ErrorResponse;
 import com.yo.GestPro.models.product.CreateProductDto;
 import com.yo.GestPro.models.product.Product;
+import com.yo.GestPro.utils.mapstruct.ProductMapper;
 import com.yo.GestPro.repository.ClientRepository;
 import com.yo.GestPro.repository.ProductRepository;
 import com.yo.GestPro.utils.ProductQuantityValidation;
@@ -22,6 +23,7 @@ public class ProductService {
     private ProductRepository productRepository;
     private ClientRepository clientRepository;
     private ProductQuantityValidation productQuantityValidation;
+    private ProductMapper productMapper;
 
     public void createProduct(String loginClient, CreateProductDto createProductDto) {
         Client client = clientRepository.findByLoginClient(loginClient).orElse(null);
@@ -63,5 +65,28 @@ public class ProductService {
         }
 
         return null;
+    }
+
+    public ResponseEntity<?> updateProduct(String uuid, CreateProductDto createProductDto) {
+           Product product = productRepository.findById(UUID.fromString(uuid)).orElse(null);
+
+           if (product != null){
+               Product updatedProduct =  productMapper.updateProductFromDto(product, createProductDto);
+               productRepository.save(updatedProduct);
+
+               return ResponseEntity.noContent().build();
+           }
+           else {
+                List<ErrorField> errorField = List.of(new ErrorField(
+                          "idProduct",
+                          "Product not found in Database"));
+
+                ErrorResponse error = ErrorResponse.standardError(
+                          404,
+                          "Product not found",
+                          errorField);
+
+                return ResponseEntity.status(404).body(error);
+           }
     }
 }
